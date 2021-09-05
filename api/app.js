@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // Others
 app.use(cors());
 app.use(helmet());
-app.use(morgan());
+//app.use(morgan());
 
 // Routes
 app.use(require('./routes/auth.caldar'));
