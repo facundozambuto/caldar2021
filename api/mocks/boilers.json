@@ -1,0 +1,77 @@
+[
+	{
+		"_id": {
+			"$oid": "613aad088d32bbf9f7ba9d60"
+		},
+		"boilerId": "empleado1Nombre",
+		"temperature": 60.5,
+		"created_at": {
+			"$date": "2021-09-10T00:53:44.252Z"
+		},
+		"madeDate": {
+			"$date": "2021-09-02T00:37:23.623Z"
+		},
+		"brand": "marcaX",
+		"capacity": 500
+	},
+	{
+		"_id": {
+			"$oid": "613aade2f5513ef6e6269401"
+		},
+		"boilerId": "caldera1",
+		"temperature": 60.5,
+		"created_at": {
+			"$date": "2021-09-10T00:58:04.939Z"
+		},
+		"madeDate": {
+			"$date": "2021-09-02T00:37:23.623Z"
+		},
+		"brand": "marcaX",
+		"capacity": 500
+	},
+	{
+		"_id": {
+			"$oid": "613aae2aa5d39f5947786325"
+		},
+		"boilerId": "caldera3",
+		"temperature": 60.5,
+		"created_at": {
+			"$date": "2021-09-10T00:59:43.223Z"
+		},
+		"madeDate": {
+			"$date": "2021-09-02T00:37:23.623Z"
+		},
+		"brand": "marcaX",
+		"capacity": 500
+	},
+	{
+		"_id": {
+			"$oid": "613aae963260e2b7c5a5aa97"
+		},
+		"boilerId": "caldera4",
+		"temperature": 60.5,
+		"created_at": {
+			"$date": "2021-09-10T01:02:06.036Z"
+		},
+		"madeDate": {
+			"$date": "2021-09-02T00:37:23.623Z"
+		},
+		"brand": "marcaX",
+		"capacity": 500
+	},
+	{
+		"_id": {
+			"$oid": "613aaf93e1b7fc10849cb43a"
+		},
+		"boilerId": "caldera7",
+		"temperature": 150.5,
+		"created_at": {
+			"$date": "2021-09-10T01:06:17.290Z"
+		},
+		"madeDate": {
+			"$date": "2021-09-02T00:37:23.623Z"
+		},
+		"brand": "marca zeta",
+		"capacity": 250
+	}
+]

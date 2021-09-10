@@ -58,7 +58,7 @@ authMethods.signin = async (req , res) => {
         }));
     }
 
-    const token = jwt.sign(user._id.toString() , process.env.SECURE_KEY)
+    const token = jwt.sign(user._id.toString(), process.env.SECURE_KEY)
     if (!token)  {
         return res.status(500).send(res.json({
             auth: false,
