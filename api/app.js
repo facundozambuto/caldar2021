@@ -15,7 +15,7 @@ app.use(helmet());
 //app.use(morgan());
 
 // Routes
-app.use(require('./routes/auth.caldar'));
-app.use('/technicians' , require('./routes/technician.route'));
+app.use(require('./caldar2021/routes/auth.caldar'));
+app.use('/technicians' , require('./caldar2021/routes/technician.route'));
 
 module.exports = app;
