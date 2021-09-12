@@ -4,27 +4,27 @@ let boilerMockData = require('../mocks/boilers.json');
 require('dotenv').config();
 
 boilerMethods.addBoiler = async (req , res) => {
-    const { boilerId, temperature, madeDate, brand, capacity } = req.body;
-
-    const newBoiler = new boilerModel({
-        boilerId, temperature, madeDate, brand, capacity
-    });
-
     try {
-        newBoiler.save();
+        const { boilerId, temperature, madeDate, brand, capacity } = req.body;
 
-        res.status(200).send(res.json({
+        const newBoiler = new boilerModel({
+            boilerId, temperature, madeDate, brand, capacity
+        });
+
+        await newBoiler.save();
+
+        res.status(200);
+        res.json({
             success: true,
             boiler: newBoiler,
             message: "Boiler added successfully"
-        }));
+        });
 
     } catch (error) {
         res.status(500).send(res.json({
+            message: 'An error has occured ' + error.message,
             success: false,
-            message: "Error trying to add Boiler",
-            stackTrace: error.message,
-            technician: newBoiler
+            exception: 'BoilerControllerException'
         }));
     }
 }
@@ -59,21 +59,15 @@ boilerMethods.getAllBoilers = async (req , res) => {
         boilers = await boilerModel.find();
     }
 
-    res.json({
+    res.status(200).send(res.json({
         success: true,
         boilers: boilers,
         message: "Boilers founded"
-    });
-
-    // res.status(200).send(res.json({
-    //     success: true,
-    //     boilers: boilers,
-    //     message: "Boilers founded"
-    // }));
+    }));
 }
 
 boilerMethods.updateBoiler = async (req , res) => {
-    const { temperature, madeDate, brand, capacity } = req.body;
+    const { boilerId, temperature, madeDate, brand, capacity } = req.body;
     const id = req.params.id;
 
     try {

@@ -3,7 +3,6 @@ const technicianModel = require('../models/technicianModel');
 
 technicianMethods.addTechnician = async (req , res) => {
     const { firstName, lastName, employeeRecord, dateOfBirth, status, startWorkingDate } = req.body;
-    const userID = req.userID;
 
     const newTechnician = new technicianModel({
         firstName, lastName, employeeRecord, dateOfBirth, status, startWorkingDate
@@ -87,7 +86,7 @@ technicianMethods.deleteTechnician = async (req , res) => {
     
     try {
         await technicianModel.findByIdAndRemove(technicianId);
-        return res.json({
+        res.json({
             success: true,
             message: "Technician removed successfully"
         });
