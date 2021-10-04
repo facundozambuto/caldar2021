@@ -18,7 +18,7 @@ authMethods.signup = async (req , res) => {
 
         res.status(200).send(res.json({
             success: true,
-            message: "User registered succesfully. " + error.message,
+            message: "User registered succesfully. ",
             username: newUser.username,
             password: newUser.password
         }));
@@ -41,7 +41,7 @@ authMethods.signin = async (req , res) => {
         if (!user) {
             res.status(500).send(res.json({
                 auth: false,
-                message: 'User not found. ' + error.message,
+                message: 'User not found. ',
                 success: false,
                 exception: 'UserNotFoundException'
             }));
@@ -52,7 +52,7 @@ authMethods.signin = async (req , res) => {
         if (!autenticate) {
             res.status(500).send(res.json({
                 auth: false,
-                message: 'Invalid credentials. ' + error.message,
+                message: 'Invalid credentials. ',
                 success: false,
                 exception: 'InvalidCredentialsException'
             }));
@@ -62,7 +62,7 @@ authMethods.signin = async (req , res) => {
         if (!token)  {
             res.status(500).send(res.json({
                 auth: false,
-                message: 'An error has occured. ' + error.message,
+                message: 'An error has occured. ',
                 success: false,
                 exception: 'TokenException'
             }));
@@ -90,7 +90,7 @@ authMethods.confirmToken = async (req , res) => {
         if (token === "") {
             return res.status(500).send(res.json({
                 auth: false,
-                message: 'Token was not provided ' + error.message,
+                message: 'Token was not provided ',
                 success: false,
                 exception: 'TokenException'
             }));
@@ -101,7 +101,7 @@ authMethods.confirmToken = async (req , res) => {
         if (!verify) {
             res.status(500).send(res.json({
                 auth: false,
-                message: 'Token was not provided ' + error.message,
+                message: 'Token was not provided ',
                 success: false,
                 exception: 'TokenException'
             }));

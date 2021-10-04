@@ -44,7 +44,6 @@ boilerMethods.getBoilderByBoilerId = async (req , res) => {
         res.status(500).send(res.json({
             success: false,
             message: "Boiler not found",
-            stackTrace: error.message,
             exception: "BoilerNotFoundException"
         }));
     }

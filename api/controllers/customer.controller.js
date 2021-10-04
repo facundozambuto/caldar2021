@@ -44,7 +44,6 @@ customerMethods.getCustomerById = async (req , res) => {
         res.status(500).send(res.json({
             success: false,
             message: "Customer not found",
-            stackTrace: error.message,
             exception: "CustomerNotFoundException"
         }));
     }
