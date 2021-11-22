@@ -16,16 +16,18 @@ authMethods.signup = async (req , res) => {
 
         await newUser.save();
 
-        res.status(200).send(res.json({
+        res.status(200);
+        res.json({
             success: true,
             message: "User registered succesfully. ",
             username: newUser.username,
             password: newUser.password
-        }));
+        });
     } catch (error) {
         res.status(500).send(res.json({
+            message: 'An error has occured ' + error.message,
             success: false,
-            message: "Error trying to register user. " + error.message,
+            exception: 'BoilerControllerException',
             stackTrace: error.message,
             username: newUser.username
         }));
@@ -68,11 +70,13 @@ authMethods.signin = async (req , res) => {
             }));
         }
     
-        return res.status(200).send(res.json({
+        res.status(200)
+        res.json({
             auth: true,
             token: token,
+            user: user,
             success: true
-        }));
+        });
     } catch (error) {
         res.status(500).send(res.json({
             auth: false,
@@ -107,11 +111,12 @@ authMethods.confirmToken = async (req , res) => {
             }));
         }
     
-        res.status(200).send(res.json({
+        res.status(200);
+        res.json({
             auth: 'valid',
             token: token,
             success: true
-        }));
+        });
     } catch (error) {
         res.status(500).send(res.json({
             auth: false,
