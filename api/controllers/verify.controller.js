@@ -7,7 +7,7 @@ const verify = {
 
 function verifyToken(req, res, next) {
 
-    const token = req.headers['x-access-token'];
+    const token = req.headers['authorization'];
 
     if (token === undefined || token === null || token === "") {
         res.status(500).send(res.json({
@@ -17,7 +17,7 @@ function verifyToken(req, res, next) {
         }));
     }
 
-    const auth = jwt.verify(token , process.env.SECURE_KEY);
+    const auth = jwt.verify(token , "NITRO");
     if (!auth) {
         res.status(500).send(res.json({
             success: false,

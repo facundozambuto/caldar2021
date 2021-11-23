@@ -60,7 +60,7 @@ authMethods.signin = async (req , res) => {
             }));
         }
     
-        const token = jwt.sign(user._id.toString(), process.env.SECURE_KEY)
+        const token = jwt.sign(username, "NITRO")
         if (!token)  {
             res.status(500).send(res.json({
                 auth: false,
@@ -89,7 +89,7 @@ authMethods.signin = async (req , res) => {
 
 authMethods.confirmToken = async (req , res) => {
     try {
-        const { token } = req.body;
+        const token = req.headers.authorization.split(' ')[1];
     
         if (token === "") {
             return res.status(500).send(res.json({
@@ -100,7 +100,7 @@ authMethods.confirmToken = async (req , res) => {
             }));
         }
     
-        const verify = jwt.verify(token , process.env.SECURE_KEY);
+        const verify = jwt.verify(token , "NITRO");
         
         if (!verify) {
             res.status(500).send(res.json({
