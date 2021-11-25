@@ -68,15 +68,16 @@ boilerMethods.getAllBoilers = async (req , res) => {
 boilerMethods.updateBoiler = async (req , res) => {
     const { boilerId, temperature, madeDate, brand, capacity } = req.body;
     const id = req.params.id;
-
+    
     try {
-        const updatedBoiler = await boilerModel.findOne({_id: id}).updateOne({$set: { boilerId, temperature, madeDate, brand, capacity }});
+        const updatedBoiler = await boilerModel.findOneAndUpdate({_id: id}, {$set: { boilerId, temperature, madeDate, brand, capacity }}, {new: true});
 
-        res.status(200).send(res.json({
+        res.status(200)
+        res.json({
             success: true,
             boiler: updatedBoiler,
             message: "Boiler was updated successfully"
-        }));
+        });
     } catch (error) {
         res.status(500).send(res.json({
             success: false,
