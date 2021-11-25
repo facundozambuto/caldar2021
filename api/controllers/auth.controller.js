@@ -49,7 +49,7 @@ authMethods.signin = async (req , res) => {
             }));
         }
     
-        const autenticate = user.confirmPassword(password);
+        const autenticate = await user.confirmPassword(password);
         
         if (!autenticate) {
             res.status(500).send(res.json({
