@@ -21,11 +21,12 @@ boilerMethods.addBoiler = async (req , res) => {
         });
 
     } catch (error) {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             message: 'An error has occured ' + error.message,
             success: false,
             exception: 'BoilerControllerException'
-        }));
+        });
     }
 }
 
@@ -35,17 +36,19 @@ boilerMethods.getBoilderByBoilerId = async (req , res) => {
     const boiler = await boilerModel.findOne({boilerId: boilerId});
 
     if (boiler) {
-        res.status(200).send(res.json({
+        res.status(200);
+        res.json({
             success: true,
             boiler: boiler,
             message: "Boiler founded"
-        }));
+        });
     } else {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             success: false,
             message: "Boiler not found",
             exception: "BoilerNotFoundException"
-        }));
+        });
     }
 }
 
@@ -58,11 +61,12 @@ boilerMethods.getAllBoilers = async (req , res) => {
         boilers = await boilerModel.find();
     }
 
-    res.status(200).send(res.json({
+    res.status(200);
+    res.json({
         success: true,
         boilers: boilers,
         message: "Boilers founded"
-    }));
+    });
 }
 
 boilerMethods.updateBoiler = async (req , res) => {
@@ -72,19 +76,20 @@ boilerMethods.updateBoiler = async (req , res) => {
     try {
         const updatedBoiler = await boilerModel.findOneAndUpdate({_id: id}, {$set: { boilerId, temperature, madeDate, brand, capacity }}, {new: true});
 
-        res.status(200)
+        res.status(200);
         res.json({
             success: true,
             boiler: updatedBoiler,
             message: "Boiler was updated successfully"
         });
     } catch (error) {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             success: false,
             message: "Boiler was not updated.",
             stackTrace: error.message,
             exception: "UpdateBoilerException"
-        }));
+        });
     }
 }
 
@@ -98,12 +103,13 @@ boilerMethods.deleteBoiler = async (req , res) => {
             message: "Boiler removed successfully"
         });
     } catch (error) {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             success: false,
             message: "Boiler was not deleted.",
             stackTrace: error.message,
             exception: "DeleteBoilerException"
-        }));
+        });
     }
 }
 

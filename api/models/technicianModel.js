@@ -4,8 +4,7 @@ require('dotenv').config();
 const technicianSchema = new Schema({
     firstName: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     lastName: {
         type: String,
@@ -24,7 +23,8 @@ const technicianSchema = new Schema({
     },
     employeeRecord: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 });
 

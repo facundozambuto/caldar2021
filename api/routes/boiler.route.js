@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { addBoiler, getBoilderByBoilerId, getAllBoilers, updateBoiler, deleteBoiler } = require('../controllers/boiler.controller');
 
-//const { verifyToken } = require('../controllers/verify.controller')
+const { verifyToken } = require('../controllers/verify.controller');
 
-router.get('/', getAllBoilers);
-router.get('/:id', getBoilderByBoilerId);
-router.put('/:id', updateBoiler);
-router.delete('/:id', deleteBoiler);
-router.post('/', addBoiler);
+router.get('/', verifyToken, getAllBoilers);
+router.get('/:id', verifyToken, getBoilderByBoilerId);
+router.put('/:id', verifyToken, updateBoiler);
+router.delete('/:id', verifyToken, deleteBoiler);
+router.post('/', verifyToken, addBoiler);
 
 module.exports = router;

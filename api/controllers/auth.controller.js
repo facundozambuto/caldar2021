@@ -24,13 +24,14 @@ authMethods.signup = async (req , res) => {
             password: newUser.password
         });
     } catch (error) {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             message: 'An error has occured ' + error.message,
             success: false,
             exception: 'BoilerControllerException',
             stackTrace: error.message,
             username: newUser.username
-        }));
+        });
     }
 }
 
@@ -41,36 +42,39 @@ authMethods.signin = async (req , res) => {
         const user = await UserModel.findOne({username: username});
     
         if (!user) {
-            res.status(500).send(res.json({
+            res.status(400);
+            res.json({
                 auth: false,
                 message: 'User not found. ',
                 success: false,
                 exception: 'UserNotFoundException'
-            }));
+            });
         }
     
         const autenticate = await user.confirmPassword(password);
         
         if (!autenticate) {
-            res.status(500).send(res.json({
+            res.status(400);
+            res.json({
                 auth: false,
                 message: 'Invalid credentials. ',
                 success: false,
                 exception: 'InvalidCredentialsException'
-            }));
+            });
         }
     
         const token = jwt.sign(username, "NITRO")
         if (!token)  {
-            res.status(500).send(res.json({
+            res.status(400);
+            res.json({
                 auth: false,
                 message: 'An error has occured. ',
                 success: false,
                 exception: 'TokenException'
-            }));
+            });
         }
     
-        res.status(200)
+        res.status(200);
         res.json({
             auth: true,
             token: token,
@@ -78,12 +82,13 @@ authMethods.signin = async (req , res) => {
             success: true
         });
     } catch (error) {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             auth: false,
             message: 'An error has occured ' + error.message,
             success: false,
             exception: 'TokenException'
-        }));
+        });
     }
 }
 
@@ -92,23 +97,25 @@ authMethods.confirmToken = async (req , res) => {
         const token = req.headers.authorization.split(' ')[1];
     
         if (token === "") {
-            return res.status(500).send(res.json({
+            res.status(400);
+            res.json({
                 auth: false,
                 message: 'Token was not provided ',
                 success: false,
                 exception: 'TokenException'
-            }));
+            });
         }
     
         const verify = jwt.verify(token , "NITRO");
         
         if (!verify) {
-            res.status(500).send(res.json({
+            res.status(400);
+            res.json({
                 auth: false,
                 message: 'Token was not provided ',
                 success: false,
                 exception: 'TokenException'
-            }));
+            });
         }
     
         res.status(200);
@@ -118,12 +125,13 @@ authMethods.confirmToken = async (req , res) => {
             success: true
         });
     } catch (error) {
-        res.status(500).send(res.json({
+        res.status(400);
+        res.json({
             auth: false,
             message: 'Token was not provided. ' + error.message,
             success: false,
             exception: 'TokenException'
-        }));
+        });
     }
 }
 
