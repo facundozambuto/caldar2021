@@ -2,10 +2,10 @@ const technicianMethods = {};
 const technicianModel = require('../models/technicianModel');
 
 technicianMethods.addTechnician = async (req , res) => {
-    const { firstName, lastName, employeeRecord, dateOfBirth, status, startWorkingDate } = req.body;
+    const { firstName, lastName, employeeRecord, dateOfBirth, startWorkingDate } = req.body;
 
     const newTechnician = new technicianModel({
-        firstName, lastName, employeeRecord, dateOfBirth, status, startWorkingDate
+        firstName, lastName, employeeRecord, dateOfBirth, startWorkingDate
     });
 
     try {
@@ -13,7 +13,7 @@ technicianMethods.addTechnician = async (req , res) => {
 
         res.status(200);
         res.json({
-            status: true,
+            success: true,
             technician: newTechnician,
             message: "Technician added successfully"
         });
