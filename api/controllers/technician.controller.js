@@ -65,11 +65,11 @@ technicianMethods.getAllTechnicians = async (req , res) => {
 }
 
 technicianMethods.updateTechnician = async (req , res) => {
-    const { firstName, lastName, dateOfBirth, startWorkingDate } = req.body;
+    const { firstName, lastName, dateOfBirth, startWorkingDate, employeeRecord } = req.body;
     const id = req.params.id;
 
     try {
-        const updatedTechnician = await technicianModel.findOneAndUpdate({_id: id}, {$set: { firstName, lastName, dateOfBirth, startWorkingDate }}, {new: true});
+        const updatedTechnician = await technicianModel.findOneAndUpdate({_id: id}, {$set: { firstName, lastName, dateOfBirth, startWorkingDate, employeeRecord }}, {new: true});
 
         res.status(200);
         res.json({
