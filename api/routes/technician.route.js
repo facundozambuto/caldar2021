@@ -4,10 +4,10 @@ const { addTechnician , deleteTechnician , getAllTechnicians , getTechnicianByEm
 
 const { verifyToken } = require('../controllers/verify.controller');
 
-router.get('/', verifyToken, getAllTechnicians);
-router.get('/:id', verifyToken, getTechnicianByEmployeeRecord);
-router.put('/:id', verifyToken, updateTechnician);
-router.delete('/:id', verifyToken, deleteTechnician);
-router.post('/', verifyToken, addTechnician);
+router.get('/', getAllTechnicians);
+router.get('/:id', getTechnicianByEmployeeRecord);
+router.put('/:id', updateTechnician);
+router.delete('/:id', deleteTechnician);
+router.post('/', addTechnician);
 
 module.exports = router;
