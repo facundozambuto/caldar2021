@@ -17,5 +17,6 @@ app.use(require('./routes/auth.caldar'));
 app.use('/technicians', require('./routes/technician.route'));
 app.use('/boilers', require('./routes/boiler.route'));
 app.use('/customers', require('./routes/customer.route'));
+app.use('/services', require('./routes/service.route'));
 
 module.exports = app;

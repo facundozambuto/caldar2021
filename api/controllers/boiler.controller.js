@@ -30,7 +30,7 @@ boilerMethods.addBoiler = async (req , res) => {
     }
 }
 
-boilerMethods.getBoilderByBoilerId = async (req , res) => {
+boilerMethods.getBoilerByBoilerId = async (req , res) => {
     const boilerId = req.params.id;
 
     const boiler = await boilerModel.findOne({boilerId: boilerId});
