@@ -84,15 +84,14 @@ serviceMethods.updateService = async (req , res) => {
     try {
         if (serviceBody.technicianId || serviceBody.boilerId) {
             const serviceToBeUpdated = await serviceModel.findOne({_id: id});
+            let technician = null;
+            let boiler = null;
 
-            let technician = await serviceToBeUpdated.populate('technician');
-            let boiler = await serviceToBeUpdated.populate('boiler');
-
-            if (serviceToBeUpdated !== null && serviceToBeUpdated.technician !== null && serviceToBeUpdated.technician._id !== serviceBody.technicianId) {
+            if (serviceToBeUpdated !== null && serviceToBeUpdated.technician !== null && serviceBody.technicianId) {
                 technician = await technicianModel.findOne({_id: serviceBody.technicianId});
             }
 
-            if (serviceToBeUpdated !== null && serviceToBeUpdated.boiler !== null && serviceToBeUpdated.boiler._id !== serviceBody.boilerId) {
+            if (serviceToBeUpdated !== null && serviceToBeUpdated.boiler !== null && serviceBody.boilerId) {
                 boiler = await boilerModel.findOne({_id: serviceBody.boilerId});
             }
             
